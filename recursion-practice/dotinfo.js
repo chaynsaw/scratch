@@ -40,3 +40,10 @@ function fibonacci(num, memo) {
   
   return memo[num]= fibonacci(num - 1, memo) + fibonacci(num - 2, memo);
 }
+
+fibonacci(1)
+
+function fibonacci(num) {
+  if (num <= 1) return 1;
+  return fibonacci(num - 1) + fibonacci(num - 2);
+}
