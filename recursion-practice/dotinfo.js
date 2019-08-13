@@ -26,14 +26,12 @@ console.log(sumTo(3));
 console.log(sumTo(4));
 console.log(sumTo(100));
 
-var sumTo = (n) => {
-  var memo = {}
-  var sumToMemo = (n) => {
-    if (n === 1) {
-      return 1;
-    } 
-  }
+var sumTo = (n, memo = {}) => { // initialize memo object
+  if (n in memo) return memo[n]; // if n was already calculated, return that number
+  if (n === 1) return 1; // if n is 1, return 1. base case.
+  return memo[n] = sumTo(n - 1, memo) + n;; // if it's not, then store the result of the calculation, and retrieve previous calculations if necessary. 
 }
+
 function fibonacci(num, memo) { 
   if (num in memo) return memo[num];
   if (num <= 1) return 1;
