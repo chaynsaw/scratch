@@ -30,10 +30,10 @@ function adjacentElementsProduct(inputArray) {
 }
 
 function shapeArea(n) {
-  // n = 1, 1
-  // n = 2, 1, 3, 1
-  // n = 3, 1, 3, 5, 3, 1
-  // n = 4, 1, 3, 5, 7, 5, 3, 1
+  // n = 1 / 1
+  // n = 2 / 1, 3, 1 / 5
+  // n = 3 / 1, 3, 5, 3, 1 / 13
+  // n = 4, 1, 3, 5, 7, 5, 3, 1 / 25
     let total = 0;
     for (let i = 1; i < n * 2; i += 2) {
       total += i;
@@ -44,3 +44,20 @@ function shapeArea(n) {
     return total;
   }
   
+function shapeArea(n, memo = {}) {
+  
+  if (n in memo) {
+    return memo[n];
+  }
+  if (n === 1) {
+    return 1;
+  }
+  console.log(memo)
+  return memo[n] = shapeArea(n - 1, memo) + 2
+}
+function fibonacci(num, memo = {}) {
+  console.log(memo);
+  if (num in memo) return memo[num];
+  if (num <= 1) return 1;
+  return memo[num] = fibonacci(num - 1, memo) + fibonacci(num - 2, memo);
+}
