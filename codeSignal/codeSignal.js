@@ -55,9 +55,44 @@ function shapeArea(n, memo = {}) {
   console.log(memo)
   return memo[n] = shapeArea(n - 1, memo) + 2
 }
+
 function fibonacci(num, memo = {}) {
   console.log(memo);
   if (num in memo) return memo[num];
   if (num <= 1) return 1;
   return memo[num] = fibonacci(num - 1, memo) + fibonacci(num - 2, memo);
+}
+
+function almostIncreasingSequence(sequence) {
+  for (let i = 1; i < sequence.length; i++) {
+    if (sequence[i] <= sequence[i - 1]) {
+      if (!sequence[i + 1]) {
+        sequence.splice(i, 1);
+        break;
+      } else if (!sequence[i - 2]) {
+        sequence.splice(i - 1, 1);
+        break;
+      } else if (sequence[i + 1] > sequence[i] && sequence[i] > sequence[i - 2]) {
+        sequence.splice(i - 1, 1);
+        break;
+      } else if (sequence[i + 1] > sequence[i] && sequence[i] > sequence[i - 2]) {
+        sequence.splice(i, 1);
+        break;
+      } else if (sequence[i + 1] > sequence[i] && sequence[i] === sequence[i - 2]) {
+        console.log('hit');
+        sequence.splice(i, 1);
+        break;
+      } else {
+        sequence.splice(i - 1,1);
+        break;
+      }
+    }
+  }
+  console.log(sequence);
+  for (let i = 1; i < sequence.length; i++) {
+    if (sequence[i] <= sequence[i - 1]) {
+      return false;
+    }
+  }
+  return true;
 }
