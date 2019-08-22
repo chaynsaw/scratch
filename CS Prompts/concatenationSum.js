@@ -43,8 +43,28 @@ function concatSum(a) {
   console.log(memo);
   return sum;
 }
-
-
+// This only works if the array.length is under 3... 
+function concSum(a) {
+  let sum = 0; 
+  const memo = {};
+  let memoize = (value) => {
+    if (memo[value] == null) {
+      const num = parseInt(value);
+      sum += num;
+      memo[value] = num;
+    }
+  }
+  for (let i = 0; i < a.length; i++) {
+    const val = a[i].toString() + a[0];
+    const val2 = a[0] + a[i].toString();
+    const val3 = a[i].toString() + a[i];
+    memoize(val);
+    memoize(val2);
+    memoize(val3);
+  }
+  console.log(memo);
+  return sum;
+}
 
 var a = [10, 2];
-concatSum(a);
+concSum(a);
