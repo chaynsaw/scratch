@@ -16,8 +16,56 @@
 // mergeStrings(s1, s2) = "stouperwer".
 // Because in both strings all symbols occur only 1 time, strings are merged as usual. You can find explanation for this example on the image in the description.
 
-mergeStrings(s1,s2){
-
+function mergeStrings(s1,s2){
+  const result = [];
+  const s1obj = {};
+  const s2obj = {};
+  const pointer1 = (i) => s2[i]
+  const pointer2 = (i) => s2[i]
+  for (let i = 0; i < s1.length; i++) {
+    if (s1obj[s1[i]] == null) {
+      s1obj[s1[i]] = 1;
+    } else {
+      s1obj[s1[i]]++;
+    }
+  }
+  for (let i = 0; i < s2.length; i++) {
+    if (s2obj[s2[i]] == null) {
+      s2obj[s2[i]] = 1;
+    } else {
+      s2obj[s2[i]]++;
+    }
+  }
+  const counter = 0;
+  const s1val = 0;
+  const s2val = 0;
+  while (s1val + s2val !== s1.length + s2.length) {
+    if (s1obj[pointer1(s1val)] < s2obj[pointer2(s2val)]) {
+      s1obj[pointer1(s1val)]--;
+      result.push(pointer1(s1val));
+      s1val++;
+    } else if (s2obj[pointer1(s1val)] > s2obj[pointer2(s2val)]) {
+      s2obj[pointer2(s2val)]--;
+      result.push(pointer2(s2val));
+      s2val++;
+    } else if (s1obj[pointer1(s1val)] === s2obj[pointer2(s2val)]) {
+      if (pointer1(s1val) < pointer2(s2val)) {
+        s1obj[pointer1(s1val)]--;
+        result.push(pointer1(s1val));
+        s1val++;
+      } else if (pointer2(s2val) < pointer1(s1val)) {
+        s2obj[pointer2(s2val)]--;
+        result.push(pointer2(s2val));
+        s2val++;
+      } else {
+        s1obj[pointer1(s1val)]--;
+        result.push(pointer1(s1val));
+        s1val++;
+      }
+    }
+  }
+  return result;
+  
 }
 
 function flip(arr, k) {
