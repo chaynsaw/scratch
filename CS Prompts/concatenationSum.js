@@ -18,7 +18,8 @@ function concatenationsSum(a) {
 }
 
 function concatSum(a) {
-  const sum = 0; 
+  let sum = 0; 
+  const memo = {};
   for (let i = 0; i < a.length; i++) {
     const val = a[i].toString() + a[0];
     const val2 = a[0] + a[i].toString();
@@ -29,15 +30,21 @@ function concatSum(a) {
       memo[val] = num;
     } 
     if (memo[val2] == null) {
-      const num = parseInt(val);
+      const num = parseInt(val2);
       sum += num;
-      memo[val2] = num;
+      memo[val] = num;
     }
     if (memo[val3] == null) {
-      const num = parseInt(val);
+      const num = parseInt(val3);
       sum += num;
-      memo[val3] = num;
+      memo[val] = num;
     }
   }
+  console.log(memo);
   return sum;
 }
+
+
+
+var a = [10, 2];
+concatSum(a);
