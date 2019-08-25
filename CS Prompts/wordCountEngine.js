@@ -40,7 +40,17 @@ function wordCountEngine(doc) {
   // }
   // // result.sort((a,b) => b[1] - a[1])
   // return result;
-  const counterList = new Array()
+  const counterList = new Array(largestCount + 1);
+  for (word of map.keys()) {
+    counter = map.get(word);
+    wordCounterList = counterList[counter]
+    console.log(counterList)
+    if (wordCounterList == null) {
+      wordCounterList = [];
+    }
+    wordCounterList.push(word);
+    counterList[counter] = wordCounterList;
+  }
 //     # init the word counter list of lists.
 //     # Since, in the worst case scenario, the
 //     # number of lists is going to be as

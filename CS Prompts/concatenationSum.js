@@ -54,13 +54,15 @@ function concSum(a) {
       memo[value] = num;
     }
   }
-  for (let i = 0; i < a.length; i++) {
-    const val = a[i].toString() + a[0];
-    const val2 = a[0] + a[i].toString();
-    const val3 = a[i].toString() + a[i];
-    memoize(val);
-    memoize(val2);
-    memoize(val3);
+  for (let i = 0; i < a.length; i++) { 
+    for (let j = 0; j < a.length; j++) {
+      const val = a[i].toString() + a[j];
+      const val2 = a[j] + a[i].toString();
+      const val3 = a[i].toString() + a[i];
+      memoize(val);
+      memoize(val2);
+      memoize(val3);
+    }
   }
   console.log(memo);
   return sum;
