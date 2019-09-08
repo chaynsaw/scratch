@@ -1,8 +1,14 @@
-function trySwitch(n = 3,s) {
+function trySwitch(n = 3, s = "", c = 0, solutions = {}) {
   if (n === 0) {
-    console.log(s);
+    solutions[s] = s;
+    // if (c === 2) {
+    // }
+    console.log(s, c, solutions);
     return;
-  }
-  trySwitch(n - 1, s + "X");
-  trySwitch(n - 2, s + "O");
+  } 
+  trySwitch(n - 1, s + "X", c + 1, solutions)
+  trySwitch(n - 1, s + "O", c, solutions);
+  return Object.values(solutions)
 }
+
+trySwitch()
